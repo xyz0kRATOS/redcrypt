@@ -2,191 +2,250 @@
 {% load static %}
 {% load profile_tags %}
 {% block head_title %}
-  Home
+Home
 {% endblock head_title %}
 {% block head %}
-  <style>
-.button-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-}
-
-@media (max-width: 768px) {
+<style>
   .button-container {
-    flex-direction: column;
-    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
   }
 
-  .button-container button {
-    width: 100%;
+  @media (max-width: 768px) {
+    .button-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .button-container button {
+      width: 100%;
+    }
   }
-}
 
-.heyform__trigger-button {
-  padding: 0.75rem 1.25rem !important;
-  border-radius: 0.75rem !important;
-  transition: all 0.3s !important;
-  font-size: 1rem !important;
-  line-height: 1.5rem !important;
-  font-weight: 700 !important;
-  background-color: rgba(23, 23, 23, 0.7) !important;
-  box-shadow: inset 0 2px 0px -0.5px rgba(255, 255, 255, 0.1) !important;
-}
+  .heyform__trigger-button {
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 0.6rem !important;
+    padding: 0.875rem 1.5rem !important;
+    border: 4px solid #000 !important;
+    box-shadow: 6px 6px 0 0 #000 !important;
+    transition: all 0.1s !important;
+    background-color: #08b74f !important;
+    color: #2d1d0e !important;
+    text-transform: uppercase !important;
+  }
 
-.heyform__trigger-button:hover {
-  background-color: #08b74f !important;
-  opacity: 1 !important;
-  color: #171717 !important;
-}
+  .heyform__trigger-button:hover {
+    transform: translate(3px, 3px) !important;
+    box-shadow: 3px 3px 0 0 #000 !important;
+    opacity: 1 !important;
+  }
 
-  </style>
-  
+  /* Glitch effect for title */
+  @keyframes glitch {
+
+    0%,
+    100% {
+      transform: translate(0);
+    }
+
+    20% {
+      transform: translate(-2px, 2px);
+    }
+
+    40% {
+      transform: translate(-2px, -2px);
+    }
+
+    60% {
+      transform: translate(2px, 2px);
+    }
+
+    80% {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  .glitch:hover {
+    animation: glitch 0.3s ease-in-out;
+  }
+</style>
+
 {% endblock head %}
 {% block content %}
-  <div class="min-h-[80vh] flex items-center justify-center relative">
-    <div class="rounded-xl md:w-3/4 p-4">
-      <img src="{% static 'foss-bu-dark.png' %}"
-           alt="FOSS BU Logo"
-           class="py-6 w-2/3 md:w-1/4 px-6 h-auto mx-auto"
-           data-aos="fade-up"
-           height="auto"
-           width="auto">
-      <p class="text-green-500 border inline-flex border-green-500 rounded-full font-bold py-1 px-6 bg-green-600/20 "
-         data-aos="fade-up"
-         data-aos-delay="100">Presents</p>
-      <img src="{% static 'logo_banner.svg' %}"
-           alt="Re-Dcrypt Logo"
-           class="md:w-2/3 px-4 h-auto mx-auto py-8"
-           data-aos="fade-up"
-           data-aos-delay="200"
-           height="auto"
-           width="auto">
-      <div class="mt-8 space-y-4">
-        <h1 class="text-5xl font-black bg-gradient-to-r to-green-400 from-sky-400 bg-clip-text text-transparent py-1">11th & 12th January</h1>
-        <p class="text-xl text-neutral-300 py-2">
-            Think you can crack the code? Prove it.
-        </p>
-        <div class="button-container">
-          <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3"
-                  onclick="window.location.href={% url 'about' %}">
-            <i class="ph-bold ph-info"></i>
-            About
+<div class="min-h-[80vh] flex items-center justify-center relative px-4">
+  <div class="w-full max-w-5xl">
+    <!-- FOSS Logo -->
+    <img src="{% static 'foss-bu-dark.png' %}" alt="FOSS BU Logo" class="py-6 w-2/3 md:w-1/4 h-auto mx-auto pixelated"
+      data-aos="fade-up" height="auto" width="auto">
+
+    <!-- PRESENTS badge -->
+    <div class="flex justify-center mb-6" data-aos="fade-up" data-aos-delay="100">
+      <div class="inline-block border-5 border-black bg-primary px-8 py-3 box-shadow: 6px 6px 0 0 #000;"
+        style="border: 5px solid #000; box-shadow: 6px 6px 0 0 #000;">
+        <span class="font-pixel text-sm text-dark crt-glow-sm uppercase tracking-wider">▸ Presents ◂</span>
+      </div>
+    </div>
+
+    <!-- Main Logo -->
+    <img src="{% static 'logo_banner.svg' %}" alt="Re-Dcrypt Logo"
+      class="md:w-2/3 px-4 h-auto mx-auto py-8 glitch drop-shadow-lg" data-aos="fade-up" data-aos-delay="200"
+      height="auto" width="auto">
+
+    <div class="mt-8 space-y-6">
+      <!-- Date with neo accent -->
+      <div class="neo-container mx-auto max-w-2xl p-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="neo-accent mb-4"></div>
+        <h1 class="text-3xl md:text-5xl font-pixel text-secondary crt-glow text-center">
+          11th & 12th January
+        </h1>
+        <div class="neo-accent-amber mt-4"></div>
+      </div>
+
+      <!-- Tagline -->
+      <p class="text-xl md:text-2xl retro-text text-light text-center py-4 crt-glow-sm max-w-2xl mx-auto">
+        <span class="text-primary font-bold">></span> Think you can crack the code? <span class="text-secondary">Prove
+          it.</span> <span class="blinking-cursor text-primary">_</span>
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="button-container mt-8">
+        <button class="retro-btn bg-light text-dark hover:bg-secondary py-4 px-8 flex items-center gap-3"
+          onclick="window.location.href='{% url 'about' %}'">
+          <i class="ph-bold ph-info"></i>
+          About
+        </button>
+        <button class="retro-btn bg-light text-dark hover:bg-secondary py-4 px-8 flex items-center gap-3"
+          onclick="window.location.href='{% url 'guidelines' %}'">
+          <i class="ph-bold ph-question"></i>
+          Help
+        </button>
+        <a href="/discord">
+          <button class="retro-btn bg-primary text-dark hover:bg-secondary py-4 px-8 flex items-center gap-3">
+            <i class="ph-bold ph-discord-logo"></i>
+            Discord
           </button>
-          <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3"
-                  onclick="window.location.href={% url 'guidelines' %}">
-            <i class="ph-bold ph-question"></i>
-            Help
-          </button>
-          <a href="/discord">
-            <button class="bg-neutral-900/70 shadow-inset-white hover:bg-green-600 text-neutral-100 hover:text-neutral-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center gap-3">
-              <i class="ph-bold ph-discord-logo"></i>
-              Discord
-            </button>
-          </a>
-        </div>
+        </a>
       </div>
     </div>
   </div>
-  <div data-aos="fade-up"
-       data-aos-delay="400"
-       class="rounded lg:w-3/4 md:w-3/4 w-[98%] p-5 mt-11 text-neutral-100 bg-clip-padding mb-10">
-    <span class="text-5xl font-black text-neutral-100 block mb-8">Prizes</span>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="group bg-neutral-900/50 rounded-xl p-6 shadow-inset-white hover:bg-neutral-800/80 transition-all duration-500 border border-transparent hover:border-green-600/50 text-left hover:shadow-lg hover:shadow-green-600/10 hover:-translate-y-1">
-        <div class="text-2xl font-bold mb-4 text-green-500 group-hover:text-green-400 transition-colors">Top 3</div>
-        <ul class="space-y-3 text-neutral-300">
-          <li class="flex items-center">
-            <i class="ph-bold ph-check-circle w-4 h-4 mr-2 text-green-500"></i>
-            <div class="flex flex-col items-start">
-              1 year of
-              <span class="text-yellow-400 font-bold">Linkedin Premium</span>
-            </div>
-          </li>
-          <li class="flex items-center">
-            <i class="ph-bold ph-check-circle w-4 h-4 mr-2 text-green-500"></i>
-            1 year <code class="text-green-400 px-1">.xyz</code> domain
-          </li>
-          <li class="flex items-center">
-            <i class="ph-bold ph-check-circle w-4 h-4 mr-2 text-green-500"></i>
-            Certificate of appreciation
-          </li>
-        </ul>
-      </div>
-      <div class="group bg-neutral-900/50 rounded-xl p-6 shadow-inset-white hover:bg-neutral-800/80 transition-all duration-500 border border-transparent hover:border-blue-600/50 text-left hover:shadow-lg hover:shadow-blue-600/10 hover:-translate-y-1">
-        <div class="text-2xl font-bold mb-4 text-blue-500 group-hover:text-blue-400 transition-colors">Top 5</div>
-        <ul class="space-y-3 text-neutral-300">
-          <li class="flex items-center">
-            <i class="ph-bold ph-check-circle w-4 h-4 mr-2 text-blue-500"></i>
-            <div class="flex flex-col items-start">
-              6 months of
-              <span class="text-yellow-400 font-bold">Linkedin Premium</span>
-            </div>
-          </li>
-          <li class="flex items-center">
-            <i class="ph-bold ph-check-circle w-4 h-4 mr-2 text-blue-500"></i>
-            1 year <code class="text-blue-400 px-1">.xyz</code> domain
-          </li>
-          <li class="flex items-center">
-            <i class="ph-bold ph-check-circle w-4 h-4 mr-2 text-blue-500"></i>
-            Certificate of participation
-          </li>
-        </ul>
-      </div>
-      <div class="group bg-neutral-900/50 rounded-xl p-6 shadow-inset-white hover:bg-neutral-800/80 transition-all duration-500 border border-transparent hover:border-purple-600/50 text-left hover:shadow-lg hover:shadow-purple-600/10 hover:-translate-y-1">
-        <div class="text-2xl font-bold mb-4 text-purple-500 group-hover:text-purple-400 transition-colors">Top 40</div>
-        <ul class="space-y-3 text-neutral-300">
-          <li class="flex items-center">
-            <i class="ph-bold ph-check-circle w-4 h-4 mr-2 text-purple-500"></i>
-            1 year <code class="text-purple-400 px-1">.xyz</code> domain
-          </li>
-          <li class="flex items-center">
-            <i class="ph-bold ph-check-circle w-4 h-4 mr-2 text-purple-500"></i>
-            Certificate of participation
-          </li>
-        </ul>
-      </div>
-      <div class="group bg-neutral-900/50 rounded-xl p-6 shadow-inset-white hover:bg-neutral-800/80 transition-all duration-500 border border-transparent hover:border-amber-600/50 text-left hover:shadow-lg hover:shadow-amber-600/10 hover:-translate-y-1">
-        <div class="text-2xl font-bold mb-4 text-amber-500 group-hover:text-amber-400 transition-colors">Everyone</div>
-        <ul class="space-y-3 text-neutral-300">
-          <li class="flex items-center">
-            <i class="ph-bold ph-check-circle w-4 h-4 mr-2 text-amber-500"></i>
-            Certificate of participation
-          </li>
-        </ul>
-      </div>
+</div>
+
+<!-- PRIZES SECTION -->
+<div data-aos="fade-up" data-aos-delay="400" class="w-full max-w-6xl mx-auto p-5 mt-16 mb-10 px-4">
+  <!-- Section Header with Neo Accent -->
+  <div class="mb-10">
+    <span class="text-4xl md:text-5xl font-pixel text-secondary block mb-4 crt-glow text-center">Prizes</span>
+    <div class="neo-accent-amber mx-auto" style="width: 200px;"></div>
+  </div>
+
+  <!-- Prize Cards Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Top 3 -->
+    <div class="neo-card p-6 hover:-translate-y-1">
+      <div class="neo-accent mb-4"></div>
+      <div class="text-lg font-pixel mb-6 text-primary crt-glow-sm text-center">TOP 3</div>
+      <ul class="space-y-4 retro-text text-light">
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-check-circle text-lg text-primary mt-1 flex-shrink-0"></i>
+          <div class="flex flex-col">
+            <span>1 year</span>
+            <span class="text-secondary font-bold">Linkedin Premium</span>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-check-circle text-lg text-primary mt-1 flex-shrink-0"></i>
+          <span>1 year <code class="text-primary px-1 bg-primary/20">.xyz</code> domain</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-check-circle text-lg text-primary mt-1 flex-shrink-0"></i>
+          <span>Certificate</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Top 5 -->
+    <div class="neo-card neo-card-amber p-6 hover:-translate-y-1">
+      <div class="neo-accent-amber mb-4"></div>
+      <div class="text-lg font-pixel mb-6 text-secondary crt-glow-sm text-center">TOP 5</div>
+      <ul class="space-y-4 retro-text text-light">
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-check-circle text-lg text-secondary mt-1 flex-shrink-0"></i>
+          <div class="flex flex-col">
+            <span>6 months</span>
+            <span class="text-secondary font-bold">Linkedin Premium</span>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-check-circle text-lg text-secondary mt-1 flex-shrink-0"></i>
+          <span>1 year <code class="text-secondary px-1 bg-secondary/20">.xyz</code> domain</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-check-circle text-lg text-secondary mt-1 flex-shrink-0"></i>
+          <span>Certificate</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Top 40 -->
+    <div class="neo-card p-6 hover:-translate-y-1">
+      <div class="neo-accent mb-4"></div>
+      <div class="text-lg font-pixel mb-6 text-primary crt-glow-sm text-center">TOP 40</div>
+      <ul class="space-y-4 retro-text text-light">
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-check-circle text-lg text-primary mt-1 flex-shrink-0"></i>
+          <span>1 year <code class="text-primary px-1 bg-primary/20">.xyz</code> domain</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-check-circle text-lg text-primary mt-1 flex-shrink-0"></i>
+          <span>Certificate</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Everyone -->
+    <div class="neo-card neo-card-amber p-6 hover:-translate-y-1">
+      <div class="neo-accent-amber mb-4"></div>
+      <div class="text-lg font-pixel mb-6 text-secondary crt-glow-sm text-center">EVERYONE</div>
+      <ul class="space-y-4 retro-text text-light">
+        <li class="flex items-start gap-3">
+          <i class="ph-fill ph-check-circle text-lg text-secondary mt-1 flex-shrink-0"></i>
+          <span>Certificate of participation</span>
+        </li>
+      </ul>
     </div>
   </div>
-  <div data-aos="fade-up"
-       data-aos-delay="500"
-       class="rounded lg:w-3/4 md:w-3/4 w-[98%] p-5 mt-11 text-neutral-100 bg-clip-padding mb-10">
-    <span class="text-5xl font-black text-neutral-100 block mb-8">Sponsors</span>
-    <div class="flex flex-col items-center justify-center gap-4">
-      <a href="https://gen.xyz/"
-         class="transform transition-all duration-300 hover:scale-105">
-        <img src="/sponsors/xyz-logo-white.svg"
-             alt="gen.xyz"
-             class="max-h-24 filter grayscale hover:grayscale-0 transition-all duration-300 p-4 rounded-xl opacity-75 hover:opacity-100"
-             width="auto"
-             height="auto" />
+</div>
+
+<!-- SPONSORS SECTION -->
+<div data-aos="fade-up" data-aos-delay="500" class="w-full max-w-6xl mx-auto p-5 mt-16 mb-10 px-4">
+  <!-- Section Header -->
+  <div class="mb-10">
+    <span class="text-4xl md:text-5xl font-pixel text-secondary block mb-4 crt-glow text-center">Sponsors</span>
+    <div class="neo-accent-amber mx-auto" style="width: 200px;"></div>
+  </div>
+
+  <!-- Sponsor Content -->
+  <div class="neo-container mx-auto max-w-2xl p-8">
+    <div class="neo-accent mb-8"></div>
+    <div class="flex flex-col items-center justify-center gap-6">
+      <a href="https://gen.xyz/" class="transform transition-all duration-300 hover:scale-105">
+        <img src="/sponsors/xyz-logo-white.svg" alt="gen.xyz"
+          class="max-h-24 filter grayscale hover:grayscale-0 transition-all duration-300 p-4 opacity-75 hover:opacity-100 pixelated"
+          width="auto" height="auto" />
       </a>
-      <div data-heyform-id="JsPT1ESM"
-           data-heyform-type="modal"
-           data-heyform-custom-url="https://forms.fossbu.co/form/"
-           data-heyform-size="small"
-           data-heyform-open-trigger="click"
-           data-heyform-open-delay="5"
-           data-heyform-open-scroll-percent="30"
-           data-heyform-trigger-background="#171717"
-           data-heyform-trigger-text="Sponsor Us"
-           data-heyform-hide-after-submit="true"
-           data-heyform-auto-close="5">
-        <button class="heyform__trigger-button "
-                type="button"
-                onclick="HeyForm.openModal('JsPT1ESM')">Sponsor Us</button>
+      <div data-heyform-id="JsPT1ESM" data-heyform-type="modal" data-heyform-custom-url="https://forms.fossbu.co/form/"
+        data-heyform-size="small" data-heyform-open-trigger="click" data-heyform-open-delay="5"
+        data-heyform-open-scroll-percent="30" data-heyform-trigger-background="#2d1d0e"
+        data-heyform-trigger-text="Sponsor Us" data-heyform-hide-after-submit="true" data-heyform-auto-close="5">
+        <button class="heyform__trigger-button" type="button" onclick="HeyForm.openModal('JsPT1ESM')">
+          ▸ Sponsor Us ◂
+        </button>
       </div>
       <script src="https://www.unpkg.com/@heyform-inc/embed@latest/dist/index.umd.js"></script>
     </div>
+    <div class="neo-accent-amber mt-8"></div>
   </div>
+</div>
 {% endblock content %}
